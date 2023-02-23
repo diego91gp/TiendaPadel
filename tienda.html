@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <script src="https://kit.fontawesome.com/f740c0a1da.js" crossorigin="anonymous"></script> -->
+    <title>AsturPadel</title>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html"> <img class="logo" src="Images/logo.png"></a>
+        <nav>
+            <i class="fa-solid fa-bars"></i>
+
+        </nav>
+    </header>
+    <main>
+
+
+        <h1>OUTLET DE PADEL</h1>
+
+        <div class="wrapper">
+
+
+        </div>
+    </main>
+    <div class="carro">
+
+    </div>
+</body>
+
+
+<script>
+
+    var productos = new Map();
+    data();
+    async function data() {
+
+        const datos = await fetch("js/catalogo.json");
+        const catalogo = await datos.json();
+        for (const item of catalogo) {
+            productos.set(item.nombre, item);
+        }
+        return showView();
+    }
+
+    function showView() {
+
+        for (const [k, item] of productos) {
+
+            let reg = "";
+            let desc = "";
+            let desc2 = "";
+            let precioanterior = "";
+            let imgreg = "";
+            let romboreg = "";
+            if (item.regalo != "") {
+                reg = `De regalo ${item.regalo}`;
+                imgreg = `<img class='regalo' src='Images/${item.regalo}.png'>`;
+                romboreg = `<div class="paralelogramo">Regalo Incluido</div>`;
+            }
+
+            if (item.descuento != "") {
+                desc = "descuento";
+                desc2 = `- ${item.descuento}%`;
+                precioanterior = "<p class='anterior'>P.V.P:<span class='anterior anterior-precio'>" + (parseFloat(item.precio.replace(",", ".")) / (1 - (item.descuento / 100))).toFixed(2).replace(".", ",") + "€</span></p>";
+
+            }
+            document.querySelector(".wrapper").innerHTML += `
+        <div class="item">
+            <div class="item_imagen">
+            <img class="item_img" src="images/Palas/${item.foto}">
+                <div class="${desc}">${desc2}</div>
+                ${imgreg}
+            </div>
+            <h2>${item.nombre.toUpperCase()}</h2>
+            <span>${item.descripcion}</span>
+            
+            ${precioanterior}
+            <p class="precio">${item.precio}€  </p>
+            ${romboreg}
+            <span>ULTIMAS <strong> ${item.unidades}</strong> uds.</span>
+            <button class="${item.nombre}">Comprar</button>
+            
+            </div>
+        `;
+
+
+
+        }
+
+        botones = document.querySelectorAll("button");
+        for (const boton of botones) {
+            boton.addEventListener("click", compra);
+
+        }
+
+    }
+
+    function compra() {
+        let carro = document.querySelector(".carro");
+        let prodactu = productos.get(this.classList.value);
+        if (prodactu.unidades <= 5) {
+            this.previousElementSibling.firstElementChild.style.color = "red";
+        }
+        if (prodactu.unidades == 1) {
+            this.previousElementSibling.innerHTML = `<img src="Images/agotado.png">`;
+            this.remove();
+        } else {
+            prodactu.unidades = productos.get(this.classList.value).unidades - 1;
+            productos.set(this.classList.value, prodactu);
+            this.previousElementSibling.firstElementChild.textContent = prodactu.unidades;
+        }
+        carro.innerHTML += `
+        <div>
+            <img src="Images/Palas/${prodactu.foto}">
+            <span> Precio : ${prodactu.precio}</span>
+            </div>
+        `;
+
+    }
+
+
+
+</script>
+
+</html>

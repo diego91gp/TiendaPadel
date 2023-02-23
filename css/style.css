@@ -1,0 +1,211 @@
+@import url(reset.css);
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,500;1,800&family=Tilt+Warp&display=swap');
+
+:root {
+    --titulos: 'Raleway', sans-serif;
+    --lectura: 'Montserrat', sans-serif;
+    --numeros: 'Tilt Warp', cursive;
+}
+
+
+
+header {
+
+    position: fixed;
+    top: 10px;
+    right: 5%;
+    height: 40px;
+    width: 90%;
+    border-radius: 40px;
+
+
+}
+
+nav {
+
+    width: 100%;
+    background-color: rgba(79, 182, 214, 0.534);
+}
+
+main {
+    background-color: #F1F1F1;
+}
+
+h1 {
+    margin-top: 200px;
+    font-weight: 800;
+    text-align: center;
+    font-size: 2em;
+    font-family: var(--titulos);
+}
+
+.logo {
+    display: none;
+    position: relative;
+    z-index: -2;
+    width: 20%;
+}
+
+.wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.item {
+    user-select: none;
+    position: relative;
+    margin: 0 auto;
+    width: 80%;
+    background-color: white;
+    border: solid 1px #C9C9C9;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+.item:hover {
+    box-shadow: 0px 2px 6px 3px rgba(0, 0, 0, 0.51);
+}
+
+.item_img {
+    padding: 10px;
+    border-bottom: 2px #cecece solid;
+    width: 200px;
+}
+
+.item_img:hover,
+.descuento:hover,
+.regalo:hover {
+
+    cursor: pointer;
+}
+
+h2 {
+    font-weight: 800;
+    color: #2E2E2E;
+    text-align: center;
+    font-size: 1em;
+    font-family: var(--titulos);
+
+}
+
+.carro {
+    display: none;
+}
+
+.item_imagen {
+    position: relative;
+}
+
+.anterior {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7em;
+    font-weight: 800;
+    font-style: italic;
+
+    color: #5f5e5e;
+}
+
+.anterior-precio {
+    text-decoration: line-through;
+}
+
+.descuento {
+    position: absolute;
+    bottom: 5px;
+    right: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-image: url(../images/desc.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: rgb(251, 248, 248);
+    padding-top: 27px;
+    padding-right: 7px;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+
+}
+
+
+.item span {
+    font-weight: 500;
+    font-size: 0.9em;
+    font-family: arial;
+    text-align: center;
+    width: 90%;
+}
+
+.precio {
+    font-size: 1.5em;
+    font-weight: 400;
+    font-family: var(--numeros);
+}
+
+.regalo {
+    rotate: 20deg;
+    width: 55px;
+    left: 10px;
+    top: 150px;
+    position: absolute;
+}
+
+.paralelogramo {
+    color: white;
+    padding-top: 5px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    font-family: var(--numeros);
+
+    font-style: italic;
+    background: #077ee6;
+    transform: skew(20deg);
+}
+
+strong {
+    font-family: var(--numeros);
+    font-size: 1.2em;
+    color: #EA8711;
+}
+
+
+
+@media (min-width: 600px) {
+    .wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (min-width: 950px) {
+    .wrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media (min-width: 1250px) {
+    .wrapper {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

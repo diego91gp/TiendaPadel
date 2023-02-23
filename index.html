@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport">
+    <link rel="stylesheet" href="./css/landingstyle.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="fondo">
+        <img src="./Images/fondo/fondo1.jpg">
+        <img src="./Images/fondo/fondo2 (1).webp">
+        <img src="./Images/fondo/fondo3.jpg">
+    </div>
+    <div id="tapa">
+        <div class="logo">
+            <a href="tienda.html"><img src="Images/asturpadel2.png" alt=""></a>
+        </div>
+
+
+        <div class="accede">
+
+
+
+        </div>
+    </div>
+
+</body>
+
+
+<script>
+    var fondo = document.getElementById('fondo');
+    var imagenes = fondo.getElementsByTagName('img');
+    var actual = 0;
+
+    function siguiente() {
+        imagenes[actual].style.opacity = 0;
+        actual = (actual + 1) % imagenes.length;
+        imagenes[actual].style.opacity = 1;
+    }
+
+    imagenes[actual].style.opacity = 1;
+    setInterval(siguiente, 8000);
+</script>
+
+
+</html>

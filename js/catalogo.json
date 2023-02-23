@@ -1,0 +1,222 @@
+[
+    {
+        "nombre": "Addidas Multipower",
+        "foto": "addidas-multipower.jpg",
+        "precio": "149,99",
+        "iva": 21,
+        "descuento": 20,
+        "categoria": "palas",
+        "unidades": 6,
+        "descripcion": "El máximo exponente de la innovación llega a la familia Adipower con la ADIPOWER MULTIWEIGHT. La tecnología hecha pala de pádel.",
+        "regalo": "overgrip"
+    },
+    {
+        "nombre": "Addidas RX1000",
+        "foto": "addidas-rx1000.jpg",
+        "precio": "165,99",
+        "iva": 21,
+        "descuento": 10,
+        "categoria": "palas",
+        "unidades": 12,
+        "descripcion": "La gran versatilidad de la pala RX 1000 la convierte en una opción muy atractiva para un jugador de nivel intermedio. Su superficie de Fiber Glass la hace una pala muy cómoda con un tacto satisfactorio, garantizando una gran capacidad de dominio.",
+        "regalo": "overgrip"
+    },
+    {
+        "nombre": "Addidas RX Carbon",
+        "foto": "addidas-rxcarbon.jpg",
+        "precio": "135,99",
+        "iva": 21,
+        "descuento": "",
+        "categoria": "palas",
+        "unidades": 7,
+        "descripcion": "La nueva RX CARBON es una pala de gama alta para jugadores de nivel intermedio. Las mejores prestaciones en un producto hecho para adaptarse a ti.",
+        "regalo": "overgrip"
+    },
+    {
+        "nombre": "Babolat AirViper",
+        "foto": "babolat-airvipper.jpg",
+        "precio": "235,99",
+        "iva": 21,
+        "descuento": 5,
+        "categoria": "palas",
+        "unidades": 4,
+        "descripcion": "Pala Babolat Air Viper 2022. Con un plus de potencia y manejabilidad para controlar al rival con movimientos rápidos y remates potentes. Pala Polivalente.",
+        "regalo": "overgrip"
+    },
+    {
+        "nombre": "Babolat CounterVertuo",
+        "foto": "babolat-countervertuo.jpg",
+        "precio": "189,99",
+        "iva": 21,
+        "descuento": 15,
+        "categoria": "palas",
+        "unidades": 10,
+        "descripcion": "Intenta agotar a tus adversarios con la versión más blanda de esta nueva generación de palas que te animará a darle la vuelta al juego y ser un COUNTER STRIKER.",
+        "regalo": "overgrip"
+    },
+    {
+        "nombre": "Babolat CounterViper",
+        "foto": "babolat-counterviper.jpg",
+        "precio": "99,99",
+        "iva": 21,
+        "descuento": 45,
+        "categoria": "palas",
+        "unidades": 2,
+        "descripcion": "La pala Counter Viper 2022 es una pala de control, pero con un plus de potencia respecto a la típica pala de control con forma redonda. ",
+        "regalo": "overgrip"
+    },
+    {
+        "nombre": "Bullpadel Flow Woman",
+        "foto": "bullpadel-flow-woman.jpg",
+        "precio": "185,99",
+        "iva": 21,
+        "descuento": "",
+        "categoria": "palas",
+        "unidades": 4,
+        "descripcion": "La nueva pala de padel para mujer Flow de Bullpadel es una pala ligera de forma híbrida y esto consigue un perfecto equilibrio entre potencia y control.",
+        "regalo": ""
+    },
+    {
+        "nombre": "Bullpadel Hack 2023",
+        "foto": "bullpadel-hack2023.jpg",
+        "precio": "224,99",
+        "iva": 21,
+        "descuento": "",
+        "categoria": "palas",
+        "unidades": 7,
+        "descripcion": "Empuña la pala oficial de Paquito Navarro para la temporada 2023. Ideal para jugadores profesionales. Con carbono combinado TRICARBON en las caras.",
+        "regalo": ""
+    },
+    {
+        "nombre": "Bullpadel Vertex",
+        "foto": "bullpadel-vertex.jpg",
+        "precio": "135,99",
+        "iva": 18,
+        "descuento": "",
+        "categoria": "palas",
+        "unidades": 20,
+        "descripcion": "La Bullpadel Vertex 03 CTR es la pala ideal para jugadores profesionales que buscan golpear con efecto gracias a la superficie rugosa TOPSPIN.",
+        "regalo": ""
+    },
+    {
+        "nombre": "Camiseta Vibora T/U",
+        "foto": "camiseta-vibora.jpg",
+        "precio": "55,99",
+        "iva": 18,
+        "descuento": 10,
+        "categoria": "ropa",
+        "unidades": 7,
+        "descripcion": "Es perfecta para los jugadores que buscan una camiseta técnica que proporcione comodidad y transpirabilidad en todo momento. Confeccionada con tejidos de poliéster y elastano, incorpora la tecnología Drynamic,",
+        "regalo": ""
+    },
+    {
+        "nombre": "Camiseta Siux T/U",
+        "foto": "caniseta-siux.jpg",
+        "precio": "35,99",
+        "iva": 18,
+        "descuento": 50,
+        "categoria": "ropa",
+        "unidades": 10,
+        "descripcion": "Es perfecta para los jugadores que buscan una camiseta técnica que proporcione comodidad y transpirabilidad en todo momento. Confeccionada con tejidos de poliéster y elastano, incorpora la tecnología Drynamic,",
+        "regalo": ""
+    },
+    {
+        "nombre": "Dropshot TopGun",
+        "foto": "dropshot-topgun.jpg",
+        "precio": "255,99",
+        "iva": 21,
+        "descuento": 5,
+        "categoria": "palas",
+        "unidades": 9,
+        "descripcion": "La nueva pala Drop Shot Top Gun 2021 cuenta con una forma híbrida similar a la forma de lágrima pero con una mayor orientación al control.",
+        "regalo": "overgrip"
+    },
+    {
+        "nombre": "Nox AT10 Tapia Edition",
+        "foto": "nox-at10agustintapiaedition.jpg",
+        "precio": "284,99",
+        "iva": 21,
+        "descuento": "",
+        "categoria": "palas",
+        "unidades": 14,
+        "descripcion": "La nueva AT10 Luxury Genius 18K de Agustín Tapia para la temporada 2023. Con caras de Carbono 18K y la clásica goma HR3 de NOX tendrás en tus manos una pala de tacto confortable y con gran salida de bola en el juego de fondo. ",
+        "regalo": "overgrip"
+    },
+    {
+        "nombre": "OverGrip Akkerson",
+        "foto": "overgripakkeron.jpg",
+        "precio": "44,99",
+        "iva": 18,
+        "descuento": "",
+        "categoria": "accesorios",
+        "unidades": 44,
+        "descripcion": "Total control de pala, antiresbalos.",
+        "regalo": ""
+    },
+    {
+        "nombre": "Paletero Head",
+        "foto": "paletero-head.jpg",
+        "precio": "65,99",
+        "iva": 18,
+        "descuento": "",
+        "categoria": "accesorios",
+        "unidades": 14,
+        "descripcion": "Padelero con capacidad para hasta 3 palas , tejido antihumedad.",
+        "regalo": ""
+    },
+    {
+        "nombre": "Pantalon Vibora T/U",
+        "foto": "pantalon-vibora.jpg",
+        "precio": "35,99",
+        "iva": 18,
+        "descuento": "",
+        "categoria": "ropa",
+        "unidades": 7,
+        "descripcion": "Pantalon transpirable ultracomodo, tecnologia AirLift.",
+        "regalo": ""
+    },
+    {
+        "nombre": "Pack Pelotas Bullpadel",
+        "foto": "pelotas-bullpadel.jpg",
+        "precio": "135,99",
+        "iva": 21,
+        "descuento": 15,
+        "categoria": "accesorios",
+        "unidades": 7,
+        "descripcion": "La nueva RX CARBON es una pala de gama alta para jugadores de nivel intermedio. Las mejores prestaciones en un producto hecho para adaptarse a ti.",
+        "regalo": "overgrip"
+    },
+    {
+        "nombre": "Pack Pelotas Siux",
+        "foto": "pelotas-siux.jpg",
+        "precio": "135,99",
+        "iva": 21,
+        "descuento": 40,
+        "categoria": "accesorios",
+        "unidades": 7,
+        "descripcion": "La nueva RX CARBON es una pala de gama alta para jugadores de nivel intermedio. Las mejores prestaciones en un producto hecho para adaptarse a ti.",
+        "regalo": ""
+    },
+    {
+        "nombre": "Zapatillas Asics T42",
+        "foto": "zapatillas-asic1.jpg",
+        "precio": "45,99",
+        "iva": 18,
+        "descuento": "",
+        "categoria": "ropa",
+        "unidades": 10,
+        "descripcion": "Zapatillas Asic con suela de espiga, perfectas para interior.",
+        "regalo": ""
+    },
+    {
+        "nombre": "Pantalon Asics T44",
+        "foto": "zapatillas-asic2.jpg",
+        "precio": "55,99",
+        "iva": 18,
+        "descuento": 15,
+        "categoria": "ropa",
+        "unidades": 7,
+        "descripcion": "La nueva RX CARBON es una pala de gama alta para jugadores de nivel intermedio. Las mejores prestaciones en un producto hecho para adaptarse a ti.",
+        "regalo": ""
+    }
+]
