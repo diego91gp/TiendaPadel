@@ -1,5 +1,5 @@
 window.onload = function () {
-    document.querySelector(".icocarro").addEventListener("click", () => {
+    document.querySelector(".cesta").addEventListener("click", () => {
         document.querySelector(".carro").classList.toggle("active");
 
     })
@@ -10,6 +10,7 @@ window.onload = function () {
     }
     document.querySelector(".wrapper").addEventListener("click", funciones);
     var productos = new Map();
+    var mapacarro = new Map();
     (async function data() {
         const datos = await fetch("js/catalogo.json");
         const catalogo = await datos.json();
@@ -79,6 +80,7 @@ window.onload = function () {
 
     function compra(e) {
         let carro = document.querySelector(".carro_productos");
+        let carrototal = document.querySelector(".carro_calculo");
         let prodactu = productos.get(e.target.classList.value);
         if (prodactu.unidades <= 5) {
             e.target.previousElementSibling.previousElementSibling.firstElementChild.style.color = "red";
@@ -95,25 +97,39 @@ window.onload = function () {
             e.target.previousElementSibling.previousElementSibling.firstElementChild.textContent = prodactu.unidades;
         }
 
-        let x = false;
-        for (const ch of carro.children) {
-            if (ch.id == prodactu.nombre) {
-                x = true;
-            }
+        if (!mapacarro.has(prodactu)) {
+            mapacarro.set(prodactu, 1);
+            document.querySelector("#cantidad").textContent = parseFloat(document.querySelector("#cantidad").textContent) + 1;
+        }
+        else {
+            mapacarro.set(prodactu, mapacarro.get(prodactu) + 1);
 
         }
-
-        if (x) {
-
-
-        } else {
+        let total = 0;
+        carro.innerHTML = "";
+        for (const [k, v] of mapacarro) {
+            let sumaprecio = (parseFloat(k.precio.replace(",", ".")) * v).toFixed(2);
+            let coniva = (parseFloat(sumaprecio) + (sumaprecio * k.iva / 100)).toFixed(2);
             carro.innerHTML += `
-        <div id="${prodactu.nombre}">
-            <img src="Images/Palas/${prodactu.foto}">
-            <span> Precio : ${prodactu.precio}</span>
-            </div>
-        `;
+            <div id="${k.nombre}">
+             <div>
+                <img src="Images/Palas/${k.foto}">
+                </div>
+                <div>
+                <span>Cantidad : ${v}</span>
+                <span> Pvp : ${sumaprecio.replace(".", ",")} €</span>
+                <span>IVA:${k.iva}% </span>
+                <span>${coniva.replace(".", ",")} €</span>
+                </div>
+                </div>
+            `;
+            total = total + parseFloat(coniva);
+
         }
+        carrototal.innerHTML = total.toFixed(2).replace(".", ",") + " €";
+
+
+
     }
 
     function muestra(e) {
