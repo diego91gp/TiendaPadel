@@ -6,7 +6,7 @@
         "iva": 21,
         "descuento": 20,
         "categoria": "palas",
-        "unidades": 6,
+        "unidades": 3,
         "descripcion": "El máximo exponente de la innovación llega a la familia Adipower con la ADIPOWER MULTIWEIGHT. La tecnología hecha pala de pádel.",
         "regalo": "overgrip"
     },
@@ -17,7 +17,7 @@
         "iva": 21,
         "descuento": 10,
         "categoria": "palas",
-        "unidades": 12,
+        "unidades": 1,
         "descripcion": "La gran versatilidad de la pala RX 1000 la convierte en una opción muy atractiva para el jugador. Su superficie de Fiber Glass la hace una pala muy cómoda.",
         "regalo": "overgrip"
     },
@@ -28,7 +28,7 @@
         "iva": 21,
         "descuento": "",
         "categoria": "palas",
-        "unidades": 7,
+        "unidades": 2,
         "descripcion": "La nueva RX CARBON es una pala de gama alta para jugadores de nivel intermedio. Las mejores prestaciones en un producto hecho para adaptarse a ti.",
         "regalo": "overgrip"
     },
@@ -50,7 +50,7 @@
         "iva": 21,
         "descuento": 15,
         "categoria": "palas",
-        "unidades": 10,
+        "unidades": 2,
         "descripcion": "Intenta agotar a tus adversarios con la versión más blanda de esta nueva generación de palas que te animará a darle la vuelta al juego y ser un COUNTER STRIKER.",
         "regalo": "overgrip"
     },
@@ -83,7 +83,7 @@
         "iva": 21,
         "descuento": "",
         "categoria": "palas",
-        "unidades": 7,
+        "unidades": 1,
         "descripcion": "Empuña la pala oficial de Paquito Navarro para la temporada 2023. Ideal para jugadores profesionales. Con carbono combinado TRICARBON en las caras.",
         "regalo": ""
     },
@@ -94,7 +94,7 @@
         "iva": 18,
         "descuento": "",
         "categoria": "palas",
-        "unidades": 20,
+        "unidades": 3,
         "descripcion": "La Bullpadel Vertex 03 CTR es la pala ideal para jugadores profesionales que buscan golpear con efecto gracias a la superficie rugosa TOPSPIN.",
         "regalo": ""
     },
@@ -105,7 +105,7 @@
         "iva": 18,
         "descuento": 10,
         "categoria": "ropa",
-        "unidades": 7,
+        "unidades": 4,
         "descripcion": "Es perfecta para los jugadores que buscan una camiseta técnica que proporcione comodidad y transpirabilidad en todo momento. Confeccionada con tejidos de poliéster y elastano, incorpora la tecnología Drynamic,",
         "regalo": ""
     },
@@ -116,7 +116,7 @@
         "iva": 18,
         "descuento": 50,
         "categoria": "ropa",
-        "unidades": 10,
+        "unidades": 2,
         "descripcion": "Es perfecta para los jugadores que buscan una camiseta técnica que proporcione comodidad y transpirabilidad en todo momento. Confeccionada con tejidos de poliéster y elastano, incorpora la tecnología Drynamic,",
         "regalo": ""
     },
@@ -127,7 +127,7 @@
         "iva": 21,
         "descuento": 5,
         "categoria": "palas",
-        "unidades": 9,
+        "unidades": 3,
         "descripcion": "La nueva pala Drop Shot Top Gun 2021 cuenta con una forma híbrida similar a la forma de lágrima pero con una mayor orientación al control.",
         "regalo": "overgrip"
     },
@@ -138,7 +138,7 @@
         "iva": 21,
         "descuento": "",
         "categoria": "palas",
-        "unidades": 14,
+        "unidades": 5,
         "descripcion": "La nueva AT10 Luxury Genius 18K de Agustín Tapia para la temporada 2023. Con caras de Carbono 18K y la clásica goma HR3 de NOX tendrás en tus manos una pala de tacto confortable y con gran salida de bola en el juego de fondo. ",
         "regalo": "overgrip"
     },
@@ -149,7 +149,7 @@
         "iva": 18,
         "descuento": "",
         "categoria": "accesorios",
-        "unidades": 44,
+        "unidades": 2,
         "descripcion": "Total control de pala, antiresbalos.",
         "regalo": ""
     },
@@ -160,7 +160,7 @@
         "iva": 18,
         "descuento": "",
         "categoria": "accesorios",
-        "unidades": 14,
+        "unidades": 5,
         "descripcion": "Padelero con capacidad para hasta 3 palas , tejido antihumedad.",
         "regalo": ""
     },
@@ -183,18 +183,18 @@
         "descuento": 15,
         "categoria": "accesorios",
         "unidades": 7,
-        "descripcion": "La nueva RX CARBON es una pala de gama alta para jugadores de nivel intermedio. Las mejores prestaciones en un producto hecho para adaptarse a ti.",
+        "descripcion": "Pack de  3 pelotas marca Bullpadel, ideales para interior y exterior, marca la diferencia.",
         "regalo": "overgrip"
     },
     {
         "nombre": "Pack Pelotas Siux",
         "foto": "pelotas-siux.jpg",
-        "precio": "135,99",
+        "precio": "5,99",
         "iva": 21,
         "descuento": 40,
         "categoria": "accesorios",
-        "unidades": 7,
-        "descripcion": "La nueva RX CARBON es una pala de gama alta para jugadores de nivel intermedio. Las mejores prestaciones en un producto hecho para adaptarse a ti.",
+        "unidades": 3,
+        "descripcion": "Pack de  3 pelotas marca Siux, presión ideal, destroza a tus oponentes.",
         "regalo": ""
     },
     {
@@ -203,20 +203,20 @@
         "precio": "45,99",
         "iva": 18,
         "descuento": "",
-        "categoria": "ropa",
-        "unidades": 10,
+        "categoria": "zapatillas",
+        "unidades": 5,
         "descripcion": "Zapatillas Asic con suela de espiga, perfectas para interior.",
         "regalo": ""
     },
     {
-        "nombre": "Pantalon Asics T44",
+        "nombre": "Zapatillas Asics T44",
         "foto": "zapatillas-asic2.jpg",
         "precio": "55,99",
         "iva": 18,
         "descuento": 15,
-        "categoria": "ropa",
-        "unidades": 7,
-        "descripcion": "La nueva RX CARBON es una pala de gama alta para jugadores de nivel intermedio. Las mejores prestaciones en un producto hecho para adaptarse a ti.",
+        "categoria": "zapatillas",
+        "unidades": 6,
+        "descripcion": "Zapatillas Asic con suela de espiga, perfectas para interior.",
         "regalo": ""
     }
 ]
