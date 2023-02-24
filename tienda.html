@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <!-- <script src="https://kit.fontawesome.com/f740c0a1da.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/f740c0a1da.js" crossorigin="anonymous"></script>
     <title>AsturPadel</title>
 </head>
 
 <body>
+    <div id="tapa"></div>
 
     <header>
         <a href="index.html"> <img class="logo" src="Images/logo.png"></a>
@@ -19,6 +20,10 @@
 
         </nav>
     </header>
+
+    <div class="carro">
+
+    </div>
     <main>
 
 
@@ -29,25 +34,22 @@
 
         </div>
     </main>
-    <div class="carro">
 
-    </div>
 </body>
 
 
 <script>
 
+    document.querySelector(".wrapper").addEventListener("click", funciones);
     var productos = new Map();
-    data();
-    async function data() {
-
+    (async function data() {
         const datos = await fetch("js/catalogo.json");
         const catalogo = await datos.json();
         for (const item of catalogo) {
             productos.set(item.nombre, item);
         }
         return showView();
-    }
+    })();
 
     function showView() {
 
@@ -89,40 +91,74 @@
             
             </div>
         `;
-
-
-
         }
-
-        botones = document.querySelectorAll("button");
-        for (const boton of botones) {
-            boton.addEventListener("click", compra);
-
-        }
-
     }
 
-    function compra() {
+    function compra(e) {
         let carro = document.querySelector(".carro");
-        let prodactu = productos.get(this.classList.value);
+        let prodactu = productos.get(e.target.classList.value);
         if (prodactu.unidades <= 5) {
-            this.previousElementSibling.firstElementChild.style.color = "red";
+            e.target.previousElementSibling.firstElementChild.style.color = "red";
         }
         if (prodactu.unidades == 1) {
-            this.previousElementSibling.innerHTML = `<img src="Images/agotado.png">`;
-            this.remove();
+            e.target.previousElementSibling.innerHTML = `<img src="Images/agotado.png">`;
+            e.target.remove();
         } else {
-            prodactu.unidades = productos.get(this.classList.value).unidades - 1;
-            productos.set(this.classList.value, prodactu);
-            this.previousElementSibling.firstElementChild.textContent = prodactu.unidades;
+            prodactu.unidades = productos.get(e.target.classList.value).unidades - 1;
+            productos.set(e.target.classList.value, prodactu);
+            e.target.previousElementSibling.firstElementChild.textContent = prodactu.unidades;
         }
-        carro.innerHTML += `
-        <div>
+
+        let x = false;
+        for (const ch of carro.children) {
+            if (ch.id == prodactu.nombre) {
+                x = true;
+            }
+
+        }
+
+        if (x) {
+
+
+        } else {
+            carro.innerHTML += `
+        <div id="${prodactu.nombre}">
             <img src="Images/Palas/${prodactu.foto}">
             <span> Precio : ${prodactu.precio}</span>
             </div>
         `;
+        }
+    }
 
+    function muestra(e) {
+        if (e.target.tagName == "BUTTON") {
+
+        } else {
+            let url = e.target.src;
+            var tapa = document.getElementById("tapa");
+            tapa.innerHTML = `<figure id="imgGrande"><figcaption>${e.target.parentElement.nextElementSibling.textContent}<i class="fa-solid fa-circle-xmark"></i></figcaption><img src=" ${url}" ></figure>`;
+            document.querySelector(".fa-circle-xmark").addEventListener("click", cierra);
+            tapa.style.display = "flex";
+            setTimeout(() => {
+                tapa.firstElementChild.style.opacity = 1;
+            }, 100);
+        }
+
+
+    }
+
+    function funciones(e) {
+        if (e.target.tagName == "BUTTON") {
+            compra(e);
+        }
+        if (e.target.className ==
+            "item_img") {
+            muestra(e);
+        }
+    }
+
+    function cierra() {
+        document.getElementById("tapa").style.display = "none";
     }
 
 
