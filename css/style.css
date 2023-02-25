@@ -55,21 +55,88 @@ nav {
 }
 
 .carro_productos {
-    padding: 10px;
+    overflow-y: auto;
+    max-height: 250px;
     width: 100%;
+}
+
+
+#novalido {
+    font-family: var(--numeros);
+    display: none;
+    color: rgba(52, 228, 52, 0.783);
+    text-align: center;
+}
+
+.carro_calculo {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 150px;
+    width: 100%;
+    background-color: #2E2E2E;
+    color: white;
+}
+
+.carro_calculo input {
+    padding-bottom: 3px;
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    background-color: #f5f5f5;
+    font-family: var(--titulos);
+    color: #333;
+    transition: all 0.3s ease-in-out;
+
+
+
+}
+
+.carro_calculo input:focus {
+    outline: none;
+    border-color: #0077ff;
+    background-color: #fff;
+}
+
+.carro button {
+    margin: 0 5px;
+    border: none;
+    background-color: #ECECEC;
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.carro button:hover {
+    background-color: #333;
+    color: #ECECEC;
+}
+
+.carro button:disabled {
+    background-color: #DDD;
+    color: #999;
+    cursor: not-allowed;
 }
 
 .carro_productos>div {
     margin: 0 auto;
     width: 90%;
     display: flex;
-    justify-content: space-around;
-    border-bottom: solid 1px black;
+    justify-content: space-between;
+    border-bottom: solid 2px #CECECE;
 }
 
 .carro_productos>div>div {
     font-size: 18px;
     display: flex;
+    width: 50%;
     gap: 5px;
     flex-direction: column;
     justify-content: center;
@@ -174,6 +241,10 @@ h1 {
     transition: box-shadow ease 0.3s;
 }
 
+.grises {
+    filter: grayscale(80%);
+    pointer-events: none;
+}
 
 .item_img {
     padding: 10px;
@@ -197,6 +268,32 @@ h2 {
 
 }
 
+.wrapper button {
+    display: inline-block;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #007bff;
+    color: #fff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.wrapper button:hover {
+    background-color: #0069d9;
+}
+
+.wrapper button[disabled] {
+    opacity: 0.5;
+    background-color: #ccc;
+    color: #666;
+    border-color: #aaa;
+}
+
+
 .carro {
     display: none;
     overflow-y: auto;
@@ -208,7 +305,6 @@ h2 {
 }
 
 .active {
-    max-height: 250px;
     width: 100%;
     z-index: 2;
     position: absolute;
@@ -217,11 +313,16 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto;
+
 }
 
 .carro img {
-    width: 100px;
+    padding: 15px;
+    width: 125px;
+}
+
+.carro .palas {
+    transform: rotate(50deg);
 }
 
 .item_imagen {
@@ -291,14 +392,16 @@ h2 {
 
 .paralelogramo {
     color: white;
-    padding-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100px;
     height: 50px;
     text-align: center;
     font-family: var(--numeros);
 
     font-style: italic;
-    background: #077ee6;
+    background: #E42837;
     transform: skew(20deg);
 }
 
@@ -377,21 +480,43 @@ h1::after {
 
 .mensaje {
     justify-content: center;
+    font-size: 1.5em;
     z-index: 5;
     display: none;
     position: absolute;
-    bottom: 5px;
+    top: 20px;
     right: 40px;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(40, 143, 40, 0.833);
-    color: white;
-    padding: 10px;
+    color: #007BFF;
     text-align: center;
+
 }
 
 .mensaje.mostrar {
     display: block;
     animation: fadeOut 1.5s forwards;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Estilo para el fondo de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+}
+
+/* Estilo para el "pulgar" de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+    background-color: #077EE6;
+    border-radius: 10px;
+}
+
+/* Estilo para el "pulgar" de la barra de desplazamiento cuando se le da click */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555555;
 }
 
 @keyframes fadeOut {
@@ -412,10 +537,12 @@ h1::after {
         position: relative;
     }
 
+    .carro_productos {
+        max-height: 500px;
+    }
+
     .active {
         box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.75);
-
-        max-height: 500px;
         margin-left: -150px;
         top: 100px;
         left: 0;

@@ -9,6 +9,8 @@ window.onload = function () {
 
     }
     document.querySelector(".wrapper").addEventListener("click", funciones);
+    document.querySelector(".carro").addEventListener("click", funcionesCarro);
+    document.querySelector(".carro").addEventListener("keydown", funcionesCarro);
     var productos = new Map();
     var mapacarro = new Map();
     (async function data() {
@@ -70,64 +72,58 @@ window.onload = function () {
             <p class="precio">${item.precio}€  </p>
             ${romboreg}
             <span>ULTIMAS <strong> ${item.unidades}</strong> uds.</span>
-            <div class="mensaje">Añadido a la cesta</div>
-            <button class="${item.nombre}">Comprar</button>
+            <div class="mensaje"><i class="fa-solid fa-basket-shopping"></i></div>
+            <button class="${item.nombre}">Añadir a la cesta</button>
             
             </div>
         `;
+            if (item.unidades == 0) {
+                document.getElementsByClassName(item.nombre)[0].previousElementSibling.previousElementSibling.innerHTML = "";
+                document.getElementsByClassName(item.nombre)[0].parentElement.classList.toggle("grises");
+                document.getElementsByClassName(item.nombre)[0].textContent = "Producto Agotado";
+                document.getElementsByClassName(item.nombre)[0].disabled = true;
+            }
         }
     }
 
     function compra(e) {
-        let carro = document.querySelector(".carro_productos");
-        let carrototal = document.querySelector(".carro_calculo");
-        let prodactu = productos.get(e.target.classList.value);
+
+        let prodactu = "";
+        let referencia = "";
+        if (productos.has(e)) {
+            prodactu = productos.get(e);
+            referencia = document.getElementsByClassName(e)[0];
+        } else {
+            referencia = e.target;
+            prodactu = productos.get(referencia.classList.value);
+        }
         if (prodactu.unidades <= 5) {
-            e.target.previousElementSibling.previousElementSibling.firstElementChild.style.color = "red";
+            referencia.previousElementSibling.previousElementSibling.firstElementChild.style.color = "red";
         }
         if (prodactu.unidades == 1) {
+            prodactu.unidades = productos.get(referencia.classList.value).unidades - 1;
+            productos.set(referencia.classList.value, prodactu);
+            referencia.previousElementSibling.previousElementSibling.innerHTML = ""; //`<img src="Images/agotado.png">`;
+            referencia.parentElement.classList.toggle("grises");
+            referencia.disabled = true;
+            referencia.textContent = "Producto Agotado";
 
-            e.target.previousElementSibling.previousElementSibling.innerHTML = `<img src="Images/agotado.png">`;
-            e.target.parentElement.style.filter = "grayscale(80%)";
-            e.target.parentElement.style.pointerEvents = "none";
-            e.target.remove();
+
+
         } else {
-            prodactu.unidades = productos.get(e.target.classList.value).unidades - 1;
-            productos.set(e.target.classList.value, prodactu);
-            e.target.previousElementSibling.previousElementSibling.firstElementChild.textContent = prodactu.unidades;
+            prodactu.unidades = productos.get(referencia.classList.value).unidades - 1;
+            productos.set(referencia.classList.value, prodactu);
+            referencia.previousElementSibling.previousElementSibling.firstElementChild.textContent = prodactu.unidades;
         }
 
         if (!mapacarro.has(prodactu)) {
             mapacarro.set(prodactu, 1);
-            document.querySelector("#cantidad").textContent = parseFloat(document.querySelector("#cantidad").textContent) + 1;
         }
         else {
             mapacarro.set(prodactu, mapacarro.get(prodactu) + 1);
 
         }
-        let total = 0;
-        carro.innerHTML = "";
-        for (const [k, v] of mapacarro) {
-            let sumaprecio = (parseFloat(k.precio.replace(",", ".")) * v).toFixed(2);
-            let coniva = (parseFloat(sumaprecio) + (sumaprecio * k.iva / 100)).toFixed(2);
-            carro.innerHTML += `
-            <div id="${k.nombre}">
-             <div>
-                <img src="Images/Palas/${k.foto}">
-                </div>
-                <div>
-                <span>Cantidad : ${v}</span>
-                <span> Pvp : ${sumaprecio.replace(".", ",")} €</span>
-                <span>IVA:${k.iva}% </span>
-                <span>${coniva.replace(".", ",")} €</span>
-                </div>
-                </div>
-            `;
-            total = total + parseFloat(coniva);
-
-        }
-        carrototal.innerHTML = total.toFixed(2).replace(".", ",") + " €";
-
+        pintaCarro();
 
 
     }
@@ -179,5 +175,107 @@ window.onload = function () {
         document.getElementById("tapa").style.display = "none";
     }
 
+    function funcionesCarro(e) {
+        if (e.code == "Enter") {
+            if (document.querySelector("input").value == "SUPERPADEL123") {
+                document.querySelector("input").remove();
+                document.getElementById("novalido").style.display = "block";
 
+
+
+                //Si el cupon es correcto , cojo el valor del total lo separo por los 2 puntos, lo parseo a numero y le cambio la coma por punto, le resto el 8% del cupon y actualizo el precio
+
+                let precio = document.getElementById("totalcompra").textContent.split(":");
+                precio = parseFloat(precio[1].replace(",", "."));
+                precio = (precio - (precio * 0.08)).toFixed(2).toString().replace(".", ",");
+                document.getElementById("totalcompra").textContent = `Total: ${precio} €`;
+
+
+            } else {
+
+                document.querySelector("input").value = "";
+                document.querySelector("input").placeholder = "Cupón No Valido";
+
+
+            }
+        }
+
+        if (e.target.tagName == "BUTTON") {
+            let clave = e.target.parentElement.parentElement.parentElement.id;
+
+            if (e.target.textContent == "+") {
+                compra(clave);
+            } else {
+                let actu = productos.get(clave);
+                actu.unidades = actu.unidades + 1;
+                productos.set(clave, actu);
+                mapacarro.set(productos.get(clave), mapacarro.get(productos.get(clave)) - 1);
+
+                if (productos.get(clave).unidades == 1) {
+                    document.getElementsByClassName(clave)[0].previousElementSibling.previousElementSibling.innerHTML = `ULTIMAS <strong> ${productos.get(clave).unidades}</strong> uds.`;
+                    document.getElementsByClassName(clave)[0].parentElement.classList.toggle("grises");
+                    document.getElementsByClassName(clave)[0].textContent = "Añadir a la cesta";
+                    document.getElementsByClassName(clave)[0].disabled = false;
+                } else {
+                    document.getElementsByClassName(clave)[0].previousElementSibling.previousElementSibling.firstElementChild.textContent = actu.unidades;
+                }
+                if (mapacarro.get(productos.get(clave)) == 0) {
+                    mapacarro.delete(productos.get(clave));
+                }
+                pintaCarro();
+            }
+        }
+    }
+    function pintaCarro() {
+        let carro = document.querySelector(".carro_productos");
+        let carrototal = document.querySelector(".carro_calculo");
+        document.querySelector("#cantidad").textContent = mapacarro.size;
+        if (mapacarro.size == 0) {
+            carro.innerHTML = "";
+            carrototal.innerText = "Carrito Vacío";
+            return false;
+        }
+
+        let total = 0;
+        carro.innerHTML = "";
+        for (const [k, v] of mapacarro) {
+            let sumaprecio = (parseFloat(k.precio.replace(",", ".")) * v).toFixed(2);
+            let coniva = (parseFloat(sumaprecio) + (sumaprecio * k.iva / 100)).toFixed(2);
+            let div = document.createElement("div");
+            div.id = k.nombre;
+            div.innerHTML = `<div> <img class="${k.categoria}" src="Images/Palas/${k.foto}"></div>`;
+            let div3 = document.createElement("div");
+            div3.innerHTML = `<h2>${k.nombre}</h2>`;
+            let span1 = document.createElement("span");
+            if (productos.get(k.nombre).unidades == 0) {
+                span1.innerHTML = `<button>-</button>${v}<button disabled="true" title="Fuera de Stock">+</button>`;
+
+            } else {
+                span1.innerHTML = `<button>-</button>${v}<button>+</button>`;
+            }
+            div3.appendChild(span1);
+            div3.innerHTML += `<span> Pvp : ${sumaprecio.replace(".", ",")} €</span>
+                <span>IVA:${k.iva}% </span>
+                <span>${coniva.replace(".", ",")} €</span>`;
+            div.appendChild(div3);
+            carro.appendChild(div);
+
+
+            total = total + parseFloat(coniva);
+
+        }
+        carrototal.innerHTML = ` 
+        <div><input type="text" placeholder="Código Descuento " ><span id="novalido">SUPERPADEL1234: 8% descuento</span></div>
+        <div id="totalcompra">Total: 
+        ${total.toFixed(2).replace(".", ",")}   €</div>
+        <a href="">Generar Factura</a>
+        `;
+    }
 }
+
+
+
+
+
+
+

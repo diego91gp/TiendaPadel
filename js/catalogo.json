@@ -7,7 +7,7 @@
         "descuento": 20,
         "categoria": "palas",
         "unidades": 3,
-        "descripcion": "El máximo exponente de la innovación llega a la familia Adipower con la ADIPOWER MULTIWEIGHT. La tecnología hecha pala de pádel.",
+        "descripcion": "El máximo exponente de la innovación llega a la familia Adipower con la ADDIDAS MULTIPOWER. La tecnología hecha pala de pádel.",
         "regalo": "overgrip"
     },
     {
@@ -150,7 +150,7 @@
         "descuento": "",
         "categoria": "accesorios",
         "unidades": 2,
-        "descripcion": "Total control de pala, antiresbalos.",
+        "descripcion": "Total control de pala, antiresbalos. 50uds.",
         "regalo": ""
     },
     {
@@ -161,7 +161,7 @@
         "descuento": "",
         "categoria": "accesorios",
         "unidades": 5,
-        "descripcion": "Padelero con capacidad para hasta 3 palas , tejido antihumedad.",
+        "descripcion": "Padelero con capacidad  hasta 3 palas , tejido antihumedad.",
         "regalo": ""
     },
     {
@@ -178,7 +178,7 @@
     {
         "nombre": "Pack Pelotas Bullpadel",
         "foto": "pelotas-bullpadel.jpg",
-        "precio": "135,99",
+        "precio": "5,99",
         "iva": 21,
         "descuento": 15,
         "categoria": "accesorios",
