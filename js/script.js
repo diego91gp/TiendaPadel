@@ -8,7 +8,12 @@ window.onload = function () {
         fil.addEventListener("click", filtra);
 
     }
+    document.querySelector(".cabecera").addEventListener("click", () => {
+        location.reload();
+    });
     document.querySelector(".wrapper").addEventListener("click", funciones);
+    document.querySelector(".fa-magnifying-glass").addEventListener("click", filtra);
+    document.querySelector(".buscador").addEventListener("keydown", filtra);
     document.querySelector(".carro").addEventListener("click", funcionesCarro);
     document.querySelector(".carro").addEventListener("keydown", funcionesCarro);
     var productos = new Map();
@@ -22,17 +27,41 @@ window.onload = function () {
         }
         return showView();
     })();
-    function filtra() {
+    function filtra(e) {
         var filter = new Map();
 
-        for (const [k, v] of productos) {
-            if (v.categoria == this.dataset.nom) {
-                filter.set(k, v);
-
+        //Si pulsaste enter o la lupa filtra por lo que hayas escrito
+        if (e.keyCode == 13 || this.tagName == "I") {
+            for (const [k, v] of productos) {
+                //transformamos cada objeto a texto y si incluye lo que hayamos escrito filtra
+                let texto = Object.values(v).join("");
+                if (texto.toUpperCase().includes(document.querySelector("#buscador").value.toUpperCase())) {
+                    filter.set(k, v);
+                }
             }
+            if (filter.size == 0) {
+                document.querySelector("h1").textContent = "No se han encontrado resultados"
+                document.querySelector(".wrapper").innerHTML = "";
+                return false;
+            }
+            document.querySelector("h1").textContent = "Resultados de " + document.querySelector("#buscador").value.toUpperCase();
+            document.querySelector("#buscador").value = "";
+            showView(filter);
         }
-        document.querySelector("h1").textContent = this.dataset.nom.toUpperCase();
-        showView(filter);
+        //Si no pulsaste nada  ni la lupa
+        if (e.keyCode == undefined && this.tagName != "I") {
+            for (const [k, v] of productos) {
+                if (v.categoria == this.dataset.nom) {
+                    filter.set(k, v);
+                }
+            }
+            document.querySelector("h1").textContent = this.dataset.nom.toUpperCase();
+
+            showView(filter);
+        }
+
+
+
 
     }
     function showView(filtro) {
@@ -89,32 +118,37 @@ window.onload = function () {
 
     function compra(e) {
 
-        let prodactu = "";
-        let referencia = "";
-        if (productos.has(e)) {
-            prodactu = productos.get(e);
-            referencia = document.getElementsByClassName(e)[0];
-        } else {
-            referencia = e.target;
-            prodactu = productos.get(referencia.classList.value);
+        if (e.target) {
+            e = e.target.className;
         }
-        if (prodactu.unidades <= 5) {
+
+        let prodactu = productos.get(e);
+        let referencia = document.getElementsByClassName(e)[0];
+
+        if (prodactu.unidades <= 5 && referencia != undefined) {
             referencia.previousElementSibling.previousElementSibling.firstElementChild.style.color = "red";
         }
+        //si las unidades son 1 desactiva el boton porque compro la ultima
         if (prodactu.unidades == 1) {
-            prodactu.unidades = productos.get(referencia.classList.value).unidades - 1;
-            productos.set(referencia.classList.value, prodactu);
-            referencia.previousElementSibling.previousElementSibling.innerHTML = ""; //`<img src="Images/agotado.png">`;
-            referencia.parentElement.classList.toggle("grises");
-            referencia.disabled = true;
-            referencia.textContent = "Producto Agotado";
+            prodactu.unidades = productos.get(e).unidades - 1;
+            productos.set(e, prodactu);
 
+            //Si estoy en la vista que tenga el producto actualiza datos
+            if (referencia != undefined) {
+                referencia.previousElementSibling.previousElementSibling.innerHTML = ""; //`<img src="Images/agotado.png">`;
+                referencia.parentElement.classList.toggle("grises");
+                referencia.disabled = true;
+                referencia.textContent = "Producto Agotado";
 
+            }
 
         } else {
-            prodactu.unidades = productos.get(referencia.classList.value).unidades - 1;
-            productos.set(referencia.classList.value, prodactu);
-            referencia.previousElementSibling.previousElementSibling.firstElementChild.textContent = prodactu.unidades;
+            prodactu.unidades = productos.get(e).unidades - 1;
+            productos.set(e, prodactu);
+            if (referencia != undefined) {
+                referencia.previousElementSibling.previousElementSibling.firstElementChild.textContent = prodactu.unidades;
+            }
+
         }
 
         if (!mapacarro.has(prodactu)) {
@@ -178,46 +212,16 @@ window.onload = function () {
 
     function funcionesCarro(e) {
         if (e.keyCode == 13) {
-            if (document.querySelector("input").value == "SUPERPADEL123") {
-
-                mapacarro.set("cupon", 0.92);
-                pintaCarro();
-
-            } else {
-
-                document.querySelector("input").value = "";
-                document.querySelector("input").placeholder = "Cupón No Valido";
-
-
-            }
+            compruebaCupon();
         }
 
         if (e.target.tagName == "BUTTON") {
-            let clave = e.target.parentElement.parentElement.parentElement.id;
-
-            if (e.target.textContent == "+") {
-                compra(clave);
-            } else {
-                let actu = productos.get(clave);
-                actu.unidades = actu.unidades + 1;
-                productos.set(clave, actu);
-                mapacarro.set(productos.get(clave), mapacarro.get(productos.get(clave)) - 1);
-
-                if (productos.get(clave).unidades == 1) {
-                    document.getElementsByClassName(clave)[0].previousElementSibling.previousElementSibling.innerHTML = `ULTIMAS <strong> ${productos.get(clave).unidades}</strong> uds.`;
-                    document.getElementsByClassName(clave)[0].parentElement.classList.toggle("grises");
-                    document.getElementsByClassName(clave)[0].textContent = "Añadir a la cesta";
-                    document.getElementsByClassName(clave)[0].disabled = false;
-                } else {
-                    document.getElementsByClassName(clave)[0].previousElementSibling.previousElementSibling.firstElementChild.textContent = actu.unidades;
-                }
-                if (mapacarro.get(productos.get(clave)) == 0) {
-                    mapacarro.delete(productos.get(clave));
-                }
-                pintaCarro();
-            }
+            botonesCarro(e);
         }
     }
+
+
+
     function pintaCarro() {
         let carro = document.querySelector(".carro_productos");
         let carrototal = document.querySelector(".carro_calculo");
@@ -259,7 +263,7 @@ window.onload = function () {
         carrototal.innerHTML = ` 
         <div >SubTotal: 
         ${total.toFixed(2).replace(".", ",")}   €</div>
-        <div><input type="text" placeholder="Código Descuento " ><span id="novalido">SUPERPADEL1234: 8% descuento</span></div>
+        <div><input id="inputcupon" type="text" placeholder="Código Descuento " ><span id="novalido">OUT8: 8% descuento</span></div>
         
         <div id="totalcompra">Total: 
         ${total.toFixed(2).replace(".", ",")}   €</div>
@@ -267,14 +271,67 @@ window.onload = function () {
         `;
         if (mapacarro.get("cupon") != 1) {
 
-            document.querySelector("input").remove();
+            document.querySelector("#inputcupon").remove();
 
             document.getElementById("novalido").style.display = "block";
             total = total * mapacarro.get("cupon");
             document.getElementById("totalcompra").textContent = `Total : ${total.toFixed(2).replace(".", ",")}   €`;
         }
     }
+
+
+    function compruebaCupon() {
+        if (document.querySelector("#inputcupon").value == "OUT8") {
+
+            mapacarro.set("cupon", 0.92);
+            pintaCarro();
+
+        } else {
+
+            document.querySelector("#inputcupon").value = "";
+            document.querySelector("#inputcupon").placeholder = "Cupón No Valido";
+
+
+        }
+    }
+
+    function botonesCarro(e) {
+        let clave = e.target.parentElement.parentElement.parentElement.id;
+
+        if (e.target.textContent == "+") {
+            compra(clave);
+        } else {
+            let actu = productos.get(clave);
+            actu.unidades = actu.unidades + 1;
+            productos.set(clave, actu);
+            mapacarro.set(productos.get(clave), mapacarro.get(productos.get(clave)) - 1);
+
+            //Si se actualizan las unidades a 1 se vuelve a pintar el boton de compra, pero si estoy en una vista que no tenga ese articulo no hace nada, al volver a cargar su vista se actualizara solo
+            if (productos.get(clave).unidades == 1 && document.getElementsByClassName(clave).length != 0) {
+
+                document.getElementsByClassName(clave)[0].previousElementSibling.previousElementSibling.innerHTML = `ULTIMAS <strong> ${productos.get(clave).unidades}</strong> uds.`;
+                document.getElementsByClassName(clave)[0].parentElement.classList.toggle("grises");
+                document.getElementsByClassName(clave)[0].textContent = "Añadir a la cesta";
+                document.getElementsByClassName(clave)[0].disabled = false;
+
+            }
+
+            if (document.getElementsByClassName(clave).length != 0) {
+                document.getElementsByClassName(clave)[0].previousElementSibling.previousElementSibling.firstElementChild.textContent = actu.unidades;
+            }
+
+
+            if (mapacarro.get(productos.get(clave)) == 0) {
+                mapacarro.delete(productos.get(clave));
+            }
+            pintaCarro();
+        }
+    }
 }
+
+
+
+
 
 
 
