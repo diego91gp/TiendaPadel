@@ -13,6 +13,7 @@ window.onload = function () {
     document.querySelector(".carro").addEventListener("keydown", funcionesCarro);
     var productos = new Map();
     var mapacarro = new Map();
+    mapacarro.set("cupon", 1);
     (async function data() {
         const datos = await fetch("js/catalogo.json");
         const catalogo = await datos.json();
@@ -176,20 +177,11 @@ window.onload = function () {
     }
 
     function funcionesCarro(e) {
-        if (e.code == "Enter") {
+        if (e.keyCode == 13) {
             if (document.querySelector("input").value == "SUPERPADEL123") {
-                document.querySelector("input").remove();
-                document.getElementById("novalido").style.display = "block";
 
-
-
-                //Si el cupon es correcto , cojo el valor del total lo separo por los 2 puntos, lo parseo a numero y le cambio la coma por punto, le resto el 8% del cupon y actualizo el precio
-
-                let precio = document.getElementById("totalcompra").textContent.split(":");
-                precio = parseFloat(precio[1].replace(",", "."));
-                precio = (precio - (precio * 0.08)).toFixed(2).toString().replace(".", ",");
-                document.getElementById("totalcompra").textContent = `Total: ${precio} €`;
-
+                mapacarro.set("cupon", 0.92);
+                pintaCarro();
 
             } else {
 
@@ -229,8 +221,8 @@ window.onload = function () {
     function pintaCarro() {
         let carro = document.querySelector(".carro_productos");
         let carrototal = document.querySelector(".carro_calculo");
-        document.querySelector("#cantidad").textContent = mapacarro.size;
-        if (mapacarro.size == 0) {
+        document.querySelector("#cantidad").textContent = mapacarro.size - 1;
+        if (mapacarro.size == 1) {
             carro.innerHTML = "";
             carrototal.innerText = "Carrito Vacío";
             return false;
@@ -239,37 +231,48 @@ window.onload = function () {
         let total = 0;
         carro.innerHTML = "";
         for (const [k, v] of mapacarro) {
-            let sumaprecio = (parseFloat(k.precio.replace(",", ".")) * v).toFixed(2);
-            let coniva = (parseFloat(sumaprecio) + (sumaprecio * k.iva / 100)).toFixed(2);
-            let div = document.createElement("div");
-            div.id = k.nombre;
-            div.innerHTML = `<div> <img class="${k.categoria}" src="Images/Palas/${k.foto}"></div>`;
-            let div3 = document.createElement("div");
-            div3.innerHTML = `<h2>${k.nombre}</h2>`;
-            let span1 = document.createElement("span");
-            if (productos.get(k.nombre).unidades == 0) {
-                span1.innerHTML = `<button>-</button>${v}<button disabled="true" title="Fuera de Stock">+</button>`;
+            if (k != "cupon") {
+                let sumaprecio = (parseFloat(k.precio.replace(",", ".")) * v).toFixed(2);
+                let coniva = (parseFloat(sumaprecio) + (sumaprecio * k.iva / 100)).toFixed(2);
+                let div = document.createElement("div");
+                div.id = k.nombre;
+                div.innerHTML = `<div> <img class="${k.categoria}" src="Images/Palas/${k.foto}"></div>`;
+                let div3 = document.createElement("div");
+                div3.innerHTML = `<h2>${k.nombre}</h2>`;
+                let span1 = document.createElement("span");
+                if (productos.get(k.nombre).unidades == 0) {
+                    span1.innerHTML = `<button>-</button>${v}<button disabled="true" title="Fuera de Stock">+</button>`;
 
-            } else {
-                span1.innerHTML = `<button>-</button>${v}<button>+</button>`;
+                } else {
+                    span1.innerHTML = `<button>-</button>${v}<button>+</button>`;
+                }
+                div3.appendChild(span1);
+                div3.innerHTML += `<span> P.V.P : ${sumaprecio.replace(".", ",")} €</span>
+                    <span>IVA:${k.iva}% </span>
+                    <span>${coniva.replace(".", ",")} €</span>`;
+                div.appendChild(div3);
+                carro.appendChild(div);
+                total = total + parseFloat(coniva);
             }
-            div3.appendChild(span1);
-            div3.innerHTML += `<span> Pvp : ${sumaprecio.replace(".", ",")} €</span>
-                <span>IVA:${k.iva}% </span>
-                <span>${coniva.replace(".", ",")} €</span>`;
-            div.appendChild(div3);
-            carro.appendChild(div);
-
-
-            total = total + parseFloat(coniva);
 
         }
         carrototal.innerHTML = ` 
+        <div >SubTotal: 
+        ${total.toFixed(2).replace(".", ",")}   €</div>
         <div><input type="text" placeholder="Código Descuento " ><span id="novalido">SUPERPADEL1234: 8% descuento</span></div>
+        
         <div id="totalcompra">Total: 
         ${total.toFixed(2).replace(".", ",")}   €</div>
         <a href="">Generar Factura</a>
         `;
+        if (mapacarro.get("cupon") != 1) {
+
+            document.querySelector("input").remove();
+
+            document.getElementById("novalido").style.display = "block";
+            total = total * mapacarro.get("cupon");
+            document.getElementById("totalcompra").textContent = `Total : ${total.toFixed(2).replace(".", ",")}   €`;
+        }
     }
 }
 
