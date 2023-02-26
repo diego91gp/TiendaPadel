@@ -33,3 +33,7 @@ body {
     background-image: url(../Images/fondo/fondolanding.jpg);
     opacity: 0.95;
 }
+
+.logo {
+    margin: 200px auto;
+}
