@@ -33,7 +33,7 @@ header {
     grid-column-end: 4;
 }
 
-header img {
+#logo {
     top: 10px;
     width: 80px;
     left: 5%;
@@ -571,7 +571,7 @@ h1::after {
 
 
 @media (min-width: 600px) {
-    header img {
+    #logo {
         width: 150px;
     }
 
