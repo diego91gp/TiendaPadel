@@ -1,4 +1,6 @@
 window.onload = function () {
+
+
     document.querySelector(".cesta").addEventListener("click", () => {
         document.querySelector(".carro").classList.toggle("active");
 
@@ -18,6 +20,11 @@ window.onload = function () {
     document.querySelector(".carro").addEventListener("keydown", funcionesCarro);
     var productos = new Map();
     var mapacarro = new Map();
+
+
+
+
+
     mapacarro.set("cupon", 1);
     (async function data() {
         const datos = await fetch("js/catalogo.json");
@@ -56,6 +63,12 @@ window.onload = function () {
                 }
             }
             document.querySelector("h1").textContent = this.dataset.nom.toUpperCase();
+            // if (sessionStorage.getItem("productos")) {
+            //     for (const p of JSON.parse(sessionStorage.getItem("productos"))) {
+            //         mapacarro.set(p[0], p[1]);
+            //     }
+            //   pintaCarro();
+
 
             showView(filter);
         }
@@ -65,6 +78,7 @@ window.onload = function () {
 
     }
     function showView(filtro) {
+
         document.querySelector(".wrapper").innerHTML = "";
         if (filtro == undefined) {
             filtro = productos;
@@ -115,6 +129,7 @@ window.onload = function () {
             }
         }
     }
+
 
     function compra(e) {
 
@@ -195,6 +210,13 @@ window.onload = function () {
     }
 
     function funciones(e) {
+        if (document.querySelector(".carro").classList.contains("active")) {
+            document.querySelector(".carro").classList.remove("active");
+        }
+
+
+
+        //clickl quitar carro
         if (e.target.tagName == "BUTTON") {
             muestra(e);
             compra(e);
@@ -267,8 +289,10 @@ window.onload = function () {
         
         <div id="totalcompra">Total: 
         ${total.toFixed(2).replace(".", ",")}   €</div>
-        <a href="">Generar Factura</a>
-        `;
+        <a id="factura" href="factura.html">GENERAR FACTURA <i class="fa-solid fa-file-invoice"></i></a>
+        `
+        sessionStorage.setItem("productos", JSON.stringify(Array.from(mapacarro)));
+        ;
         if (mapacarro.get("cupon") != 1) {
 
             document.querySelector("#inputcupon").remove();

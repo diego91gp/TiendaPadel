@@ -34,6 +34,7 @@ header {
 }
 
 #logo {
+    z-index: 3;
     top: 10px;
     width: 80px;
     left: 5%;
@@ -184,7 +185,7 @@ input:focus+i {
 
 main {
     min-height: 100vh;
-    margin-top: 70px;
+    margin-top: 60px;
     padding-bottom: 100px;
     background-color: #F1F1F1;
 }
@@ -309,7 +310,7 @@ h2 {
 }
 
 .wrapper button {
-    display: inline-block;
+    display: block;
     border: none;
     border-radius: 4px;
     padding: 12px 24px;
@@ -322,9 +323,7 @@ h2 {
     cursor: pointer;
 }
 
-.wrapper button:hover {
-    background-color: #0069d9;
-}
+
 
 .wrapper button[disabled] {
     opacity: 0.5;
@@ -348,7 +347,7 @@ h2 {
     width: 100%;
     z-index: 2;
     position: absolute;
-    top: 50px;
+    top: 60px;
     left: 0;
     display: flex;
     flex-direction: column;
@@ -521,7 +520,7 @@ h1::after {
 .mensaje {
     justify-content: center;
     font-size: 1.5em;
-    z-index: 5;
+    z-index: 2;
     display: none;
     position: absolute;
     top: 20px;
@@ -535,6 +534,21 @@ h1::after {
 .mensaje.mostrar {
     display: block;
     animation: fadeOut 1.5s forwards;
+}
+
+#factura {
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #007bff;
+    padding: 5px;
+    border-radius: 2px;
+    transition: all ease 0.5s;
+}
+
+.wrapper button:hover,
+#factura:hover {
+    background-color: #0069d9;
 }
 
 
@@ -571,6 +585,10 @@ h1::after {
 
 
 @media (min-width: 600px) {
+    #tapa img {
+        width: 50%;
+    }
+
     #logo {
         width: 150px;
     }
@@ -618,8 +636,10 @@ h1::after {
 }
 
 @media (min-width: 950px) {
+
+
     main {
-        padding-top: 15px;
+
         margin-top: 100px;
     }
 
@@ -630,6 +650,10 @@ h1::after {
     .cabecera img {
         max-width: 1600px;
 
+    }
+
+    .icocarro {
+        font-size: 1.5em;
     }
 
     figure {
@@ -644,6 +668,7 @@ h1::after {
         column-gap: 5%;
         max-width: 1500px;
     }
+
 
     .wrapper {
         grid-template-columns: repeat(4, 1fr);
