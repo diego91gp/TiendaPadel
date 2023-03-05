@@ -214,8 +214,6 @@ window.onload = function () {
             document.querySelector(".carro").classList.remove("active");
         }
 
-
-
         //clickl quitar carro
         if (e.target.tagName == "BUTTON") {
             muestra(e);
@@ -289,8 +287,9 @@ window.onload = function () {
         
         <div id="totalcompra">Total: 
         ${total.toFixed(2).replace(".", ",")}   €</div>
-        <a id="factura" href="factura.html">GENERAR FACTURA <i class="fa-solid fa-file-invoice"></i></a>
+        <a id="factura" rel="opener" href="factura.html" target="_blank">GENERAR FACTURA <i class="fa-solid fa-file-invoice"></i></a>
         `
+        //rel="opener" hace que no se pierda el sesion storage al cambiar de ventan con el parametro blank
         sessionStorage.setItem("productos", JSON.stringify(Array.from(mapacarro)));
         ;
         if (mapacarro.get("cupon") != 1) {
