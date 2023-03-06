@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Images/asturpadel.png" />
     <script src="https://kit.fontawesome.com/f740c0a1da.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
         integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
@@ -27,6 +28,7 @@
                 <h1>Padel Outlet Company</h1>
                 <p>DAW LABORAL 2º</p>
                 <p>33203 GIJON</p>
+                <p id="nofac"></p>
                 <img id="logo" src="Images/asturpadel.png" alt="">
             </div>
 
@@ -55,6 +57,10 @@
 
 <script>
 
+    //Cremos el numero de factura aleatoriamente entre 1000 y 8000
+    let noFactura = Math.round(Math.random() * (8000 - 1000) + 1000)
+    document.querySelector("#nofac").textContent = `Nº de factura: 00${noFactura}`;
+
     //Fecha actual, la pasamos a localestring y dividimos por la coma y nos quedamos con el indice 0 del array
     const fechafactura = new Date(Date.now()).toLocaleString().split(",")[0];
 
@@ -62,13 +68,11 @@
     const persona = {
         nombre: "Stal",
         apellido: "Revés",
-        direccion: "Entre Gijón y Oviedo",
+        direccion: "Avda del Padel 51, Gijon",
         telefono: "659994714",
         email: "stalreves@derecho.net",
         fecha: fechafactura
     }
-
-
 
     //Rellenamos los datos
     document.querySelector("#datos").innerHTML = `
@@ -110,7 +114,7 @@
 
     }
 
-    //If ternario
+    //Si el valor del cupon del mapa pasado del carrito es 0.92 entonces calculamos el valor del cupon en uros y lo restamos del total
     compra.get("cupon") == "0.92" ? descuento = ((total + totaliva) * 0.08).toFixed(2) : descuento = 0;
     let totalconiva = (totaliva + total - descuento).toFixed(2).replace(".", ",");
     total = total.toFixed(2).replace(".", ",");
@@ -124,13 +128,14 @@
     <div><span>TOTAL</span> <span>${totalconiva} €</span></div> 
         `;
 
+    //Funcion con la api html2pdf para crear la factura
     function creafactura() {
 
         let factura = document.querySelector(".factura");
         html2pdf()
             .set({
                 margin: 0.5,
-                filename: "FacturaPadelOut.pdf",
+                filename: `FacPOut00${noFactura}.pdf`,
                 image: {
                     type: "jpeg",
                     quality: 0.9
@@ -149,9 +154,7 @@
             .from(factura)
             .save();
 
-
     }
-
 
 </script>
 

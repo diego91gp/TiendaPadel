@@ -11,7 +11,6 @@
 }
 
 header {
-
     opacity: 0.98;
     position: fixed;
     z-index: 2;
@@ -41,6 +40,7 @@ header {
     position: absolute;
 }
 
+/*Tamaño maximo para el nav para pantallas grandes */
 nav {
     max-width: 1500px;
     display: grid;
@@ -55,7 +55,6 @@ nav {
 }
 
 .icocarro {
-
     font-family: Arial, Helvetica, sans-serif;
     user-select: none;
     display: flex;
@@ -80,7 +79,7 @@ nav {
     width: 100%;
 }
 
-
+/* Estilo para cunado acepta un cupon*/
 #novalido {
     font-family: var(--numeros);
     display: none;
@@ -112,8 +111,6 @@ input {
     transition: all 0.3s ease-in-out;
 }
 
-
-
 .carro input {
     width: 100%;
 }
@@ -129,12 +126,12 @@ header input {
     padding: 2px;
     border-left: 2px solid #565555;
     font-size: 1.5em;
-
     right: 10%;
     position: absolute;
     color: #565555;
 }
 
+/*Estilo para los input con foco */
 input:focus,
 input:focus+i {
     outline: none;
@@ -159,6 +156,7 @@ input:focus+i {
     color: #ECECEC;
 }
 
+/* Estilo para el boton + cuando noq uedan mas productos*/
 .carro button:disabled {
     background-color: #DDD;
     color: #999;
@@ -190,6 +188,7 @@ main {
     background-color: #F1F1F1;
 }
 
+/*Estilo cuando selecciono una fotoy s e hace grande */
 #tapa {
     background-color: #f1f1f156;
     backdrop-filter: blur(2px);
@@ -282,6 +281,7 @@ h1 {
     transition: box-shadow ease 0.3s;
 }
 
+/*Estilo para los divs agotados */
 .grises {
     filter: grayscale(80%);
     pointer-events: none;
@@ -296,7 +296,6 @@ h1 {
 .item_img:hover,
 .descuento:hover,
 .regalo:hover {
-
     cursor: pointer;
 }
 
@@ -323,7 +322,7 @@ h2 {
     cursor: pointer;
 }
 
-
+/*Estilo para los botones desactivados */
 
 .wrapper button[disabled] {
     opacity: 0.5;
@@ -340,9 +339,9 @@ h2 {
     color: black;
     background-color: #FFFFFF;
     box-shadow: 0 4px 2px -2px gray;
-
 }
 
+/* Cuando el carro se esta mostrando */
 .active {
     width: 100%;
     z-index: 2;
@@ -352,7 +351,6 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .carro img {
@@ -360,6 +358,7 @@ h2 {
     width: 125px;
 }
 
+/* Si las fotos del carro son palas , las roto en diagonal*/
 .carro .palas {
     transform: rotate(50deg);
 }
@@ -368,19 +367,22 @@ h2 {
     position: relative;
 }
 
+
 .anterior {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.7em;
     font-weight: 800;
     font-style: italic;
-
     color: #5f5e5e;
 }
+
+/* al precio anterior una linea atravesandolo*/
 
 .anterior-precio {
     text-decoration: line-through;
 }
 
+/*Si tiene descuento lo coloco le pongo una imagend e fondo y centro el texto */
 .descuento {
     position: absolute;
     bottom: 5px;
@@ -403,7 +405,6 @@ h2 {
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     user-select: none;
-
 }
 
 
@@ -429,6 +430,7 @@ h2 {
     position: absolute;
 }
 
+/*Estilo con forma de paralelogramo dodne escribo si tiene regalo o no */
 .paralelogramo {
     color: white;
     display: flex;
@@ -438,7 +440,6 @@ h2 {
     height: 50px;
     text-align: center;
     font-family: var(--numeros);
-
     font-style: italic;
     background: #E42837;
     transform: skew(20deg);
@@ -456,7 +457,6 @@ strong {
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 100%;
     padding-bottom: 30px;
 }
@@ -475,7 +475,6 @@ strong {
 }
 
 .tipos {
-
     font-family: var(--titulos);
     font-weight: 600;
     text-align: center;
@@ -485,7 +484,6 @@ strong {
     gap: 10px;
     grid-template-columns: repeat(2, 1fr);
     width: 90%;
-
 }
 
 h1::after {
@@ -495,7 +493,6 @@ h1::after {
     background-color: #cecece;
     height: 2px;
     width: 50%;
-
 }
 
 .tipos_foto {
@@ -505,9 +502,6 @@ h1::after {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-
-
 }
 
 .tipos img {
@@ -552,7 +546,7 @@ h1::after {
 }
 
 
-
+/* Estilos para las barras de desplazamiento*/
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -582,7 +576,7 @@ h1::after {
     }
 }
 
-
+/* Como es mobile first las meiddas de los mediaqueries con minwidth*/
 
 @media (min-width: 600px) {
     #tapa img {
@@ -657,18 +651,15 @@ h1::after {
     }
 
     figure {
-
         width: 850px;
     }
 }
-
 
 @media (min-width: 1250px) {
     .tipos {
         column-gap: 5%;
         max-width: 1500px;
     }
-
 
     .wrapper {
         grid-template-columns: repeat(4, 1fr);
